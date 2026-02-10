@@ -10,7 +10,7 @@ Zichen&nbsp;Jeff&nbsp;Cui<sup>1</sup>, Omar&nbsp;Rayyan<sup>3</sup>, Haritheja&n
 
 - [x] (Feb 9, 2026) Paper release
 - [ ] (Feb 16, 2026) Documentation / hardware release
-- [ ] (Feb 23, 2026) Code release
+- [ ] (Feb 23, 2026) Code, model checkpoint release
 
 ## License
 This project is licensed under the MIT license.
