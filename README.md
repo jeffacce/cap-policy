@@ -1,4 +1,4 @@
-## Contact-Anchored Policies: Contact Conditioning Creates Strong Robot Utility Models
+# Contact-Anchored Policies: Contact Conditioning Creates Strong Robot Utility Models
 
 [[Project page](https://cap-policy.github.io)] [[arXiv](https://arxiv.org/abs/2602.09017)]
 
@@ -6,11 +6,15 @@ Zichen&nbsp;Jeff&nbsp;Cui<sup>1</sup>, Omar&nbsp;Rayyan<sup>3</sup>, Haritheja&n
 
 <sup>1</sup><em>New York University</em>, <sup>2</sup><em>UC Berkeley</em>, <sup>3</sup><em>UCLA</em>, <sup>4</sup><em>Hello Robot Inc.</em>, <sup>5</sup><em>Ai2</em>, <sup>6</sup><em>University of Waterloo</em>
 
-### Planned Timeline
+## Planned Timeline
 
 - [x] (Feb 9, 2026) Paper release
-- [ ] (Feb 16, 2026) Documentation / hardware release
+- [x] (Feb 16, 2026) Documentation / hardware release
 - [ ] (Feb 23, 2026) Code, model checkpoint release
+
+## Documentation / Hardware
+- Build your own NYU gripper: https://nyu-gripper.pages.dev/
+- Documentation: https://cap-policy.gitbook.io/guide
 
 ## License
 This project is licensed under the MIT license.
