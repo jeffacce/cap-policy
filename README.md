@@ -10,7 +10,7 @@ Zichen&nbsp;Jeff&nbsp;Cui<sup>1</sup>, Omar&nbsp;Rayyan<sup>3</sup>, Haritheja&n
 
 - [x] (Feb 9, 2026) Paper release
 - [x] (Feb 16, 2026) Documentation / hardware release
-- [ ] (Feb 23, 2026) Code, model checkpoint release
+- [x] (Mar 30, 2026) Code, model checkpoint release
 
 ## Documentation / Hardware
 - Build your own NYU gripper: https://nyu-gripper.pages.dev/

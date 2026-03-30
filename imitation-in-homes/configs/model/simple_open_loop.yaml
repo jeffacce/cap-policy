@@ -1,0 +1,4 @@
+_target_: models.policies.simple_open_loop.SimpleReplay
+
+poses_file_path: /path/to/poses
+timeskip: 8

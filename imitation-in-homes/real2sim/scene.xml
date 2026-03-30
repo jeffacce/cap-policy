@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<mujoco model="scene">
+
+    <include file="real2sim/assets/dobb-e/model.xml" />
+    <statistic center="0.2 0 0.2" extent="1.0" />
+
+    <option cone="elliptic" noslip_iterations="2" gravity="0 0 -9.81" impratio="10">
+        <flag multiccd="enable" />
+    </option>
+
+
+    <visual>
+        <headlight diffuse="0.3 0.3 0.3" ambient="0.1 0.1 0.1" specular="0 0 0" />
+        <rgba haze="0.15 0.25 0.35 1" />
+        <global azimuth="-120" elevation="-20" offwidth="480 " offheight="360" />
+        <quality shadowsize="0" />
+
+    </visual>
+
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072" />
+        <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.8 0.8 0.8" rgb2="0.8 0.8 0.8"
+            markrgb="0.8 0.8 0.8" width="300" height="300" />
+        <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" />
+        <texture name="table_texture" type="2d" height="1" width="1" file="real2sim/assets/textures/wood0.png" />
+        <material name="table_material" texture="table_texture" rgba="1.0 1.0 1.0 1.0" texuniform="false" />
+        <texture name="wall_texture" type="2d" height="1" width="1" file="real2sim/assets/textures/stone0.png" />
+        <material name="wall_material" texture="wall_texture" rgba="1.0 1.0 1.0 1.0" texuniform="true" />
+    </asset>
+
+
+    <worldbody>
+
+        <camera name="top_view" mode="fixed" fovy="60" pos="-0.0 -0.6 1.0" euler="1.3 0 0" />
+
+        <geom name="target" pos="0 0 10" size="0.01" type="sphere" rgba="0.2 0.7 0.2 1"
+            conaffinity="0" contype="0" />
+
+        <site name="reference" pos="0 0 .25" rgba="0 0 0 0" />
+
+        <light pos="0 0 4.5" dir="0 0 -1" directional="true" />
+        <light pos="0 4.5 0.6" dir="0 -1 0" directional="true" />
+        <light pos="0 -4.5 0.6" dir="0 1 0" directional="true" />
+
+
+        <geom name="wall"
+            pos="0 0.8 1.9" size="20 20 0.05" type="plane" rgba="0.6 0.6 0.6 1.0" euler="1.57 0 0" />
+
+        <body name="table" pos="0 0.3 0">
+
+            <geom type="box" material="table_material" size=".375 .375 .025" pos="0 0 0.735" />
+            <geom type="box" material="table_material" size="0.26 0.26 .05" pos="0 0 0.66" />
+            <geom type="box" material="table_material" size="0.025 0.025 0.305" pos="-0.21 0.21 0.305" />
+            <geom type="box" material="table_material" size="0.025 0.025 0.305" pos="-0.21 -0.21 0.305" />
+            <geom type="box" material="table_material" size="0.025 0.025 0.305" pos="0.21 0.21 0.305" />
+            <geom type="box" material="table_material" size="0.025 0.025 0.305" pos="0.21 -0.21 0.305" />
+
+        </body>
+    </worldbody>
+</mujoco>

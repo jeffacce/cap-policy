@@ -1,0 +1,6 @@
+_target_: camera.publisher.R3DCameraPublisher
+host: ${network.host_address}
+camera_port: ${network.camera_port}
+pose_port: ${network.pose_port}
+stream_depth: ${stream_depth}
+stream_pose: ${stream_pose}

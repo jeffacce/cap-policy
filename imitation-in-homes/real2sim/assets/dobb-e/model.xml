@@ -1,0 +1,131 @@
+<mujoco model="dobbe">
+  <compiler angle="radian" meshdir="" texturedir="" />
+  <option integrator="implicitfast" impratio="10" cone="elliptic" noslip_iterations="2">
+    <flag multiccd="enable" />
+  </option>
+
+  <asset>
+    <mesh name="gripper_body" file="meshes/gripper_body.stl" scale="0.001 0.001 0.001" />
+    <mesh name="finger" file="meshes/finger.stl" scale="0.001 0.001 0.001" />
+    <mesh name="foam_insert" file="meshes/foam_insert.stl" scale="0.0011 0.0011 0.001" />
+    <mesh name="iphone" file="meshes/iphone.stl" scale="0.001 0.001 0.001" />
+    <mesh name="foam_collision" file="meshes/foam_insert.stl" scale="0.0011 0.00125 0.001" />
+    <texture name="metal" type="cube" file="metal.png" />
+    <material name="metalic" texture="metal" texrepeat="3 3" reflectance="0.7" texuniform="false" />
+    <material name="white" rgba="1 1 1 1" />
+    <material name="gray" rgba="0.15 0.15 0.15 1" />
+    <material name="light_gray" rgba="0.6 0.6 0.6 1" />
+    <material name="light_blue" rgba="0.345 0.65 0.976 1" />
+    <material name="black" rgba="0.05 0.05 0.05 1" />
+  </asset>
+
+  <default>
+    <default class="dobbe">
+      <joint frictionloss="0.1" armature="0.1" />
+      <position kp="100" />
+    </default>
+
+    <default class="translation">
+      <joint type="slide" armature="1e-3" damping="10" stiffness="1e-2" actuatorfrcrange="-100 100"
+        actuatorgravcomp="true" />
+      <position kp="500" dampratio="1" ctrlrange="-1.2 1.2" />
+    </default>
+
+    <default class="rotation">
+      <joint type="hinge" armature="1e-3" damping="40" stiffness="1e-2" actuatorfrcrange="-100 100"
+        actuatorgravcomp="true" />
+      <position kp="10" dampratio="1" ctrlrange="-30.1415 30.1415" />
+    </default>
+
+    <default class="finger_hinge">
+      <joint type="hinge" stiffness="10" damping="1.5" armature="0.001" range="-3.14 0" frictionloss="1" />
+      <position kp="150" dampratio="1" ctrlrange="-30.14 0" />
+    </default>
+
+    <default class="finger_actuator">
+      <position ctrlrange="-1 1" kp="100" dampratio="10.1" />
+    </default>
+
+    <default class="friction">
+      <geom condim="6" friction="5 0.1 1.0" priority="1" solref="0.01 1" solimp="0.99 0.99 0.01" conaffinity="1"
+        contype="1" />
+    </default>
+
+    <default class="visual">
+      <geom type="mesh" contype="0" conaffinity="0" density="0" group="0" />
+    </default>
+
+    <default class="collision">
+      <geom type="mesh" group="3" friction="2 0.005 0.0001" density="100" />
+    </default>
+  </default>
+
+  <worldbody>
+
+    <body name="base" pos="0 -0.35 0.85" euler="0.0 0 0" gravcomp="1">
+
+      <geom name="gripper_body_visual" mesh="gripper_body" class="visual" material="white" />
+      <geom name="gripper_body_collision" mesh="gripper_body" class="collision" />
+
+      <body name="iphone_body" pos="0 0 0" gravcomp="1">
+        <geom name="iphone_visual" mesh="iphone" class="visual" material="gray" />
+        <geom name="iphone_collision" mesh="iphone" class="collision" />
+
+        <body name="camera_body" pos="0.0 -0.036 0.1" euler="1.309 0 0.0" gravcomp="1">
+          <geom type="box" size="0.01 0.01 0.01" rgba="0.1 0.5 0.1 0" contype="0" conaffinity="0" />
+          <camera name="egocentric" mode="fixed" fovy="53.1" />
+        </body>
+      </body>
+
+      <site name="end_effector" pos="0.0 -0.036 0.1" />
+
+      <joint pos="0.0 -0.036 0.1" name="gripper_joint_y" axis="0 1 0" class="translation" />
+      <joint pos="0.0 -0.036 0.1" name="gripper_joint_z" axis="0 0 1" class="translation" />
+      <joint pos="0.0 -0.036 0.1" name="gripper_joint_x" axis="1 0 0" class="translation" />
+      <joint pos="0.0 -0.036 0.1" name="gripper_joint_rx" axis="1 0 0" class="rotation" />
+      <joint pos="0.0 -0.036 0.1" name="gripper_joint_ry" axis="0 1 0" class="rotation" />
+      <joint pos="0.0 -0.036 0.1" name="gripper_joint_rz" axis="0 0 1" class="rotation" />
+
+      <body name="fingers" pos="0 0 0.0" gravcomp="1">
+        <body name="left_finger" pos="0 0 -0.0042" gravcomp="1">
+          <joint name="finger_left_joint" axis="0 0 1" class="finger_hinge" pos="-0.0242 0.04224 0.0" />
+          <geom name="left_finger_visual" mesh="finger" class="visual" material="light_blue" />
+          <geom name="left_finger_foam_visual" mesh="foam_insert" class="visual" material="black"
+            pos="-0.00468 0.101585 0.00197" euler="0 0 3.75" />
+          <geom name="left_finger_collision" type="box" size="0.005 0.043 0.0131" rgba="1 0 0 0"
+            pos="-0.058 0.095 0.0179" euler="0 0 0.61" contype="1" conaffinity="1" class="friction" />
+          <geom name="left_bolt" type="cylinder" size="0.0038 0.001" material="metalic" pos="-0.024 0.04228 0.0315"
+            contype="0" conaffinity="0" />
+        </body>
+
+        <body name="right_finger" pos="0 0 0.0317" euler="0 3.1415 0" gravcomp="1">
+          <joint name="finger_right_joint" axis="0 0 1" class="finger_hinge" pos="-0.0242 0.04224 0.0" />
+          <geom name="right_finger_visual" mesh="finger" class="visual" material="light_blue" />
+          <geom name="right_finger_foam" mesh="foam_insert" class="visual" material="black"
+            pos="-0.00468 0.101585 0.00197" euler="0 0 3.75" />
+          <geom name="right_finger_collision" type="box" size="0.005 0.043 0.0131" rgba="1 0 0 0"
+            pos="-0.058 0.095 0.0179" euler="0 0 0.61" contype="1" conaffinity="1" class="friction" />
+          <geom name="right_bolt" type="cylinder" size="0.0038 0.001" material="metalic" pos="-0.0242 0.04224 0.0043"
+            contype="0" conaffinity="0" />
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <tendon>
+    <fixed name="split">
+      <joint joint="finger_right_joint" coef="0.5" />
+      <joint joint="finger_left_joint" coef="0.5" />
+    </fixed>
+  </tendon>
+
+  <actuator>
+    <velocity name="fingers_actuator" tendon="split" class="finger_actuator" />
+    <velocity name="gripper_joint_x" joint="gripper_joint_x" class="translation" />
+    <velocity name="gripper_joint_y" joint="gripper_joint_y" class="translation" />
+    <velocity name="gripper_joint_z" joint="gripper_joint_z" class="translation" />
+    <velocity name="gripper_joint_rx" joint="gripper_joint_rx" class="rotation" />
+    <velocity name="gripper_joint_ry" joint="gripper_joint_ry" class="rotation" />
+    <velocity name="gripper_joint_rz" joint="gripper_joint_rz" class="rotation" />
+  </actuator>
+</mujoco>

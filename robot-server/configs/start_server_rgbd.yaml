@@ -1,0 +1,25 @@
+defaults:
+  - _self_
+  - network: network
+  - camera: iphone
+  - controller: position
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+
+stream_depth: true
+stream_pose: true
+robot_cfg:
+  stretch_gripper_max: 700
+  stretch_gripper_min: 0
+  stretch_gripper_tight: -100
+  sticky_gripper: true
+  closing_threshold: 0.6
+  reopening_threshold: 0.8
+  # Value below should be null if we want it to be computed from 
+  gripper_threshold_post_grasp_list: null
+
+hydra:  
+  output_subdir: null  
+  run:  
+    dir: .
+  

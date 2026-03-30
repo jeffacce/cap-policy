@@ -1,0 +1,17 @@
+camera1: 
+  _target_: camera.publisher.R3DCameraPublisher
+  host: ${network.host_address}
+  camera_port: ${network.camera_port}
+  pose_port: ${network.pose_port}
+  stream_depth: ${stream_depth}
+  stream_pose: ${stream_pose}
+# camera2:
+#   _target_: camera.d405_publisher.D405ImagePublisher
+#   host: ${network.host_address}
+#   port: ${network.camera_port}
+#   use_depth: ${use_depth}
+camera3: 
+  _target_: camera.d435i_publisher.D435ImagePublisher
+  host: ${network.host_address}
+  port: ${network.head_camera_port}
+  use_depth: ${use_depth}

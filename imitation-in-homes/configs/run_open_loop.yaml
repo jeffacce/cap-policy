@@ -1,0 +1,53 @@
+defaults:
+  - env_vars: env_vars
+  - model: open_loop
+  - dataset: open_loop_traj
+  - _self_
+
+image_save_dir: ${env_vars.project_root}/robot_images
+image_buffer_size: 1
+device: cpu
+
+# Path to encoder weights. You can download it from the link below.
+# https://dl.dobb-e.com/models/hpr_model.pt
+task: null
+checkpoint_path: null
+
+experiment: open_loop_with_hpr_encoder
+batch_size: 32
+sampler: null
+run_offline: false
+use_depth: false
+use_tactile: false
+use_ui: false
+
+batch_sampler:
+  _target_: dataloaders.decord_dataset.DecordBatchSampler
+  batch_size: ${batch_size}
+  num_replicas: 1
+
+dataloader:
+  _target_: dataloaders.decord_dataloader.DecordVideoLoader
+  device: cpu
+  num_workers: 10
+
+robot_params:
+  h: 0.82
+  max_h: 0.06
+  max_base: 0.06
+  abs_gripper: True
+  rot_unit: axis
+
+network:
+  host: "127.0.0.1"
+  remote: "127.0.0.1"
+  camera_port: 32922
+  action_port: 8081
+  flag_port: 2828
+
+wandb:
+  entity: ${env_vars.wandb.entity}
+  project: imitation-in-homes
+  id: null
+  save_code: true
+

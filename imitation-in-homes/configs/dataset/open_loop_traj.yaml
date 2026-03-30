@@ -1,0 +1,20 @@
+train:
+  _target_: dataloaders.decord_dataset.DecordDataset
+  config:
+    _target_: dataloaders.utils.DataLoaderConfig
+    dataset_root: ${env_vars.data_root.train}
+    trajectory_roots:
+      _target_: dataloaders.utils.load_trajectory_roots
+      trajectory_root_path: ${env_vars.data_root.train}/r3d_files.txt
+      original_root: ${env_vars.data_original_root.train}
+      new_root: ${env_vars.data_root.train}
+    exclude_tasks: []
+    exclude_homes: []
+    exclude_envs: []
+    sequence_length: 1
+    control_timeskip: 0
+    fps_subsample: 8
+    relative_gripper: False
+  max_videoreaders_in_memory: 128
+  shuffle_mode: SEQUENTIAL
+  device: cpu

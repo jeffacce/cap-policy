@@ -1,0 +1,13 @@
+project_root: .
+
+data_root: 
+    train: ${env_vars.project_root}/data/extracted
+    val: ${env_vars.project_root}/data/extracted_val
+
+# path included in r3d_files.txt of dataset (may be the same as data_root if data has not been moved nor transferred across machines)
+data_original_root: 
+    train: ${env_vars.project_root}/data/extracted
+    val: ${env_vars.project_root}/data/extracted_val
+
+wandb:
+    entity: user  # wandb username

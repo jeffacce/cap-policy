@@ -1,0 +1,11 @@
+_target_: robot.franka.listener.Listener
+franka: null
+port_configs: 
+  host: ${network.host_address}
+  remote: ${network.remote_address}
+  action_port: ${network.action_port}
+  flag_port: ${network.flag_port}
+  xarm_ip: ${network.xarm_ip}
+franka_config:
+  # Deoxys configuration
+  deoxys_config_path: "franka_config.yml"
