@@ -10,7 +10,7 @@ device: cpu
 use_ui: false
 
 task: pick
-model_weight_pth: checkpoints/pick_experimental.pt
+model_weight_pth: checkpoints/pick_old.pt
 
 vqvae_load_dir: null
 vqvae_n_embed: 16

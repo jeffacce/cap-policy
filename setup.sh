@@ -31,9 +31,9 @@ echo "project_root updated to $IMI_HOME_DIR in $CONFIG_FILE"
 wget https://pub-857f7aa7553b4b1e8396f9a2779e12ed.r2.dev/close.pt
 wget https://pub-857f7aa7553b4b1e8396f9a2779e12ed.r2.dev/open.pt
 wget https://pub-857f7aa7553b4b1e8396f9a2779e12ed.r2.dev/pick.pt
-wget https://pub-857f7aa7553b4b1e8396f9a2779e12ed.r2.dev/pick_experimental.pt
+wget https://pub-857f7aa7553b4b1e8396f9a2779e12ed.r2.dev/pick_old.pt
 mkdir imitation-in-homes/checkpoints
 mv close.pt imitation-in-homes/checkpoints
 mv open.pt imitation-in-homes/checkpoints
 mv pick.pt imitation-in-homes/checkpoints
-mv pick_experimental.pt imitation-in-homes/checkpoints
+mv pick_old.pt imitation-in-homes/checkpoints
